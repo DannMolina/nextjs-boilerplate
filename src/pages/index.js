@@ -2,7 +2,24 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../../styles/Home.module.css';
 
+// * redux
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { setSample } from 'store/sample/actions';
+
 export default function Home() {
+	const dispatch = useDispatch();
+
+	// * get global state value
+	const { sampleState } = useSelector((state) => state.sample);
+
+	console.log(sampleState);
+
+	useEffect(() => {
+		setTimeout(() => {
+			dispatch(setSample('test'));
+		}, 2000);
+	}, []);
 	return (
 		<div className={styles.container}>
 			<Head>
